@@ -1,83 +1,80 @@
-
-<?php
-
-    require "dbc.php";
-
-    if (isset($_POST['btn_post'])) {
-        $filetext = $_POST['post_text'];
-                    
-        $query = "INSERT INTO tbl_cardlist (post_text) VALUES ( ?)";
-        
-        $stmt = mysqli_prepare($conn, $query);
-
-        mysqli_stmt_bind_param($stmt, "s", $filetext);
-        
-        if (mysqli_stmt_execute($stmt)) {
-            header("Location: index.php");
-        } else {
-            echo "Something went wrong!";
-            
-        }
-    }
-    
-?>
-
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width = device-width, initial-scale = 1.0">
         <meta http-equiv="X-UA-Compatible" content = "ie=edge">
-        <title> Cardlist by Phawee Toraparppisan</title>
+        <title> Cardlist Readme </title>
         
-        <link rel="stylesheet" href="style.css">
+        <style>
+        
+            * {
+                margin: 0px;
+                padding : 40px;
+                font-family: sans-serif;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 40px;
+                margin: 20px auto;
+            }
+            
+            h2 {
+                font-size: 30px;
+                
+            }
+            
+            p {
+                font-size: 18px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: justify;
+            }
+            
+            .container {
+                
+                background-color: dodgerblue;
+                margin: 30px;
+                padding: 20px;
+                border-radius: 40px;
+                color: white;
+                
+            }
+        
+        
+        
+        </style>
         
     </head>
     
     <body>
         
-    <h1>CardList</h1>
-    <div class="submit-form">
-        <form action="index.php" method="post" enctype="multipart/form-data">
-            <input type="text" name="post_text" class="post_text" placeholder="text here!" required>
-            <input type="submit" value="Submit!" name="btn_post" class="btn_post">
-        </form>
-    
-    </div> 
-    
-    <hr width="80%">
-    
-        <h2>Recently Card</h2>
-        <div class="container-list">
-            
-            <?php
-                        
-                        require "dbc.php";
-                        $query = "SELECT * FROM tbl_cardlist ORDER BY post_id DESC";
-                        if($result = mysqli_query($conn, $query)) {
-                            while ($card = mysqli_fetch_array($result)) {
-                                
 
-                    
-                    
-            ?>
-            
-                <div class="list">
-                    <a class="list-text"><?php echo $card['post_text']; ?></a>
-                
-                </div>
-            
-            
-            <?php
-                                    
-                                }}
-                                
-            ?>
+        <h1>Card List README!</h1>
+        <h2>By Phawee Toraparppisan</h2>
+        
+        <div class="container">
+        <p>นี่เป็นครั้งแรกของผม ในการทดสอบอัพโหลดไฟล์ไว้บน github และเปิดใช้เป็นเว็บไซต์   น่าเสียดายมากที่มันไม่สามารถรัน PHP ได้ และผมก็ลืมไปว่าไฟล์นี้มีการเชื่อมต่อไปยัง database 5555+ ดังนั้นผมจึงใส่หน้านี้เข้ามาแทน</p>
+        
+        <p>วิธีการใช้ไฟล์นี้ เราต้องโหลดลงมาด้วย terminal : git clone https://github.com/chrits02/cardlist.git</p>
+        <p>ติดตั้ง sql เข้าไปแก้รหัส database ใน dbs.php และก็จะทำให้สามารถใช้งานไฟล์นี้ได้ อาจรันบน localhost หรือ server ก็ได้ แต่มันไม่สามารถรัน php บน github ได้</p>
+        
+        <p>ดังนั้น หน้าเว็บนี้เลยอยากให้เป็นหน้าที่บันทึกสมองในการใช้ github ไว้ตรงนี้</p>
         
         
+        <p>การใช้ GitHub ให้เราสร้าง github ขึ้นมาอันนึง จากนั้นเอาลิ้งก์จาก Quick setup ก็อปมา และเข้าไปที่ terminal ไปที่ folder ที่ต้องการวางไฟล์ จากนั้น <br> ใช้คำสั่ง git clone [url ที่ก็อปไว้] <br> รันคำสั่งนี้ ระบบจะสร้าง folder ไว้ในหน้าที่เราเข้าอยู่ <br> ให้เรา cd เข้าไปที่ folder นั้น ลากไฟล์เว็บที่ต้องการใส่ github ลงไปใน folder จากนั้น ใช้คำสั่งบน terminal ในการ push file เข้าไปบนเว็บ Github โดยการพิมพ์ </p>
+        
+        <p>git add -A</p>
+        <p>git commit -m "ข้อความ comment version ที่แก้ไข"</p>
+        <p>git push -u origin master</p>
+        
+        <p>แค่นี้ไฟล์ทั้งหมด ก็จะเข้าไปอยู่ใน เว็บ github ที่เราทำเอาไว้แล้ว หากต้องการ publish ให้เข้าไปที่หน้าเว็บ github -> setting เลื่อนลงมาที่เมนู GitHub Page เลือก source เป็น master branch หน้าเว็บจะรีเฟรช แล้วเลื่อนลงมาดูอีกครั้ง เราจะเจอลิ้งก์ที่ github สร้างไว้ให้ และทำให้เราสามารถเข้าหน้าเว็บนั้นได้เลย</p>
         
         </div>
         
+        <a>Thank you ! &copy; Phawee Toraparppisan</a>
     </body>
 </html>
